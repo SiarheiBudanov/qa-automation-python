@@ -1,13 +1,9 @@
 import pytest
-import requests
-
-
-BASE_URL = "https://jsonplaceholder.typicode.com"
 
 
 @pytest.mark.api
-def test_get_posts():
-    response = requests.get(f"{BASE_URL}/posts", timeout=10)
+def test_get_posts(posts_api):
+    response = posts_api.get_posts()
 
     assert response.status_code == 200
 
@@ -20,8 +16,8 @@ def test_get_posts():
 
 
 @pytest.mark.api
-def test_get_single_post():
-    response = requests.get(f"{BASE_URL}/posts/1", timeout=10)
+def test_get_single_post(posts_api):
+    response = posts_api.get_post(1)
 
     assert response.status_code == 200
 
@@ -34,18 +30,14 @@ def test_get_single_post():
 
 
 @pytest.mark.api
-def test_create_post():
+def test_create_post(posts_api):
     payload = {
         "title": "QA automation",
         "body": "API test with pytest",
         "userId": 1,
     }
 
-    response = requests.post(
-        f"{BASE_URL}/posts",
-        json=payload,
-        timeout=10,
-    )
+    response = posts_api.create_post(payload)
 
     assert response.status_code == 201
 

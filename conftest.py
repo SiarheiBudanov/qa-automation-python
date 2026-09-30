@@ -3,6 +3,8 @@ import os
 import pytest
 from selenium import webdriver
 
+from clients.posts_api import PostsApi
+
 
 @pytest.fixture
 def driver():
@@ -19,3 +21,12 @@ def driver():
     yield browser
 
     browser.quit()
+
+
+@pytest.fixture
+def posts_api():
+    api = PostsApi()
+
+    yield api
+
+    api.close()
