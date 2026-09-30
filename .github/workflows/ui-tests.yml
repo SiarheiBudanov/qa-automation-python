@@ -29,9 +29,13 @@ jobs:
       - name: Install Chrome
         uses: browser-actions/setup-chrome@v1
 
-      - name: Run UI tests
+     - name: Run UI tests
         run: |
-          pytest tests/ui -v -p no:cacheprovider
+          pytest -m ui \
+            --junitxml=test-results.xml \
+            --html=report.html \
+            --self-contained-html \
+            -p no:cacheprovider
  
       - name: Upload test reports
         if: always()

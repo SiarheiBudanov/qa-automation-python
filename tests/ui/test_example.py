@@ -3,6 +3,7 @@ import pytest
 from pages.example_page import ExamplePage
 
 
+@pytest.mark.ui
 def test_example_title(driver):
     page = ExamplePage(driver)
     page.open()
@@ -10,6 +11,7 @@ def test_example_title(driver):
     assert page.title() == "Example Domain"
 
 
+@pytest.mark.ui
 def test_example_page_content(driver):
     page = ExamplePage(driver)
     page.open()
@@ -20,6 +22,7 @@ def test_example_page_content(driver):
     assert "This is not a service" in body_text
 
 
+@pytest.mark.ui
 @pytest.mark.parametrize(
     "url, expected_title",
     [
