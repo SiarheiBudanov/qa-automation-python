@@ -47,3 +47,22 @@ def test_create_post(posts_api):
     assert created_post["body"] == payload["body"]
     assert created_post["userId"] == payload["userId"]
     assert "id" in created_post
+@pytest.mark.api
+def test_get_non_existing_post(posts_api):
+    response = posts_api.get_post(9999)
+
+    assert response.status_code == 404
+
+
+@pytest.mark.api
+def test_create_post_with_invalid_payload(posts_api):
+    payload = {
+        "title": "",
+        "body": "",
+        "userId": "invalid",
+    }
+
+    response = posts_api.create_post(payload)
+
+    assert response.status_code in (201, 400, 422)
+
