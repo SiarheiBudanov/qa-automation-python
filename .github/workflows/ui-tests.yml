@@ -32,3 +32,14 @@ jobs:
       - name: Run UI tests
         run: |
           pytest tests/ui -v -p no:cacheprovider
+ 
+      - name: Upload test reports
+        if: always()
+        uses: actions/upload-artifact@v4
+        with:
+          name: test-reports
+          path: |
+            report.html
+            test-results.xml
+            reports/
+          if-no-files-found: ignore
