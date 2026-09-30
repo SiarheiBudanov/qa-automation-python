@@ -1,9 +1,18 @@
 import os
 
+import logging
+import os
+
 import pytest
 from selenium import webdriver
 
 from clients.posts_api import PostsApi
+
+
+logging.basicConfig(
+    level=logging.INFO,
+    format="%(asctime)s %(levelname)s %(name)s: %(message)s",
+)
 
 
 @pytest.fixture
