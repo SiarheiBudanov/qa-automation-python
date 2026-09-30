@@ -1,4 +1,4 @@
-name: API tests
+name: UI Tests
 
 on:
   push:
@@ -24,6 +24,6 @@ jobs:
           python -m pip install --upgrade pip
           python -m pip install -r requirements.txt
 
-      - name: Run API tests
-        run: |
-          python -m pytest tests/api -v -p no:cacheprovider --junitxml=test-results.xml
+      - name: Run UI tests
+          run: |
+    pytest tests/ui -v -p no:cacheprovider
