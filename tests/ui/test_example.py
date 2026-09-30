@@ -5,21 +5,23 @@ from pages.example_page import ExamplePage
 
 @pytest.mark.ui
 def test_example_title(driver):
-    page = ExamplePage(driver)
-    page.open()
+    page = ExamplePage(driver).open()
 
-    assert page.title() == "Example Domain"
+    assert page.title == "Example Domain"
 
 
 @pytest.mark.ui
 def test_example_page_content(driver):
-    page = ExamplePage(driver)
-    page.open()
+    page = ExamplePage(driver).open()
 
-    body_text = page.body_text()
+    assert page.has_expected_content()
 
-    assert "This domain is for use in documentation examples" in body_text
-    assert "This is not a service" in body_text
+
+@pytest.mark.ui
+def test_example_page_is_loaded(driver):
+    page = ExamplePage(driver).open()
+
+    assert page.is_loaded()
 
 
 @pytest.mark.ui
