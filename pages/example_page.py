@@ -13,9 +13,11 @@ class ExamplePage:
 
     def open(self):
         self.driver.get(self.URL)
+
         self.wait.until(
             EC.presence_of_element_located(self.BODY)
         )
+
         return self
 
     @property
